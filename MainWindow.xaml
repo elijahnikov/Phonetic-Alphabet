@@ -1,0 +1,507 @@
+﻿<Window x:Class="Phonetics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Phonetics"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="583.388"
+        ResizeMode="NoResize">
+    <Grid Name="MainGrid" Background="#FAFAFA">
+        <Border 
+            x:Name="mainRect"
+            BorderThickness="0" 
+            Grid.Row="0"
+            CornerRadius="5,5,5,5" 
+            BorderBrush="Black" 
+            Background="#EAEAEA" 
+            Margin="80,62,79.333,62.333"/>
+
+        <Label Content="Phonetics" 
+               x:FieldModifier="public"
+               x:Name="PhoneticsLabel"
+               FontFamily="Bahnschrift"
+               FontSize="40"
+               HorizontalAlignment="Left" 
+               Margin="192,163,0,0" 
+               VerticalAlignment="Top"/>
+
+        <Label Content="" 
+            x:FieldModifier="public"
+            x:Name="MainLetter"
+            FontFamily="Bahnschrift"
+            FontSize="102"
+            Visibility="Hidden"
+            HorizontalAlignment="Left" 
+            Margin="244,129,0,0" 
+            VerticalAlignment="Top"/>
+
+        <Button x:Name="SettingsBtn"
+            Click="SettingsBtn_Click"
+            Content="Settings" 
+            HorizontalAlignment="Left" 
+            Margin="414,37,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="70"
+            Height="20">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="StartBtn"
+            Click="StartBtn_Click"
+            Content="Start" 
+            HorizontalAlignment="Left" 
+            Margin="361,267,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="70"
+            Height="20">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Rectangle 
+            x:Name="entryRect"
+            HorizontalAlignment="Left" 
+            Height="30" Margin="141,262,0,0" 
+            VerticalAlignment="Top" 
+            Width="210" 
+            Fill="#FFFAFAFA"
+            RadiusX="6"
+            RadiusY="6"/>
+        <TextBox x:Name="entryBox"
+            Height="30" Margin="146,267,229,0" 
+            TextWrapping="NoWrap" 
+            AcceptsReturn="False"
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            FontSize="18" 
+            KeyDown="entryBox_KeyDown"
+            IsEnabled="False">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="6"/>
+                </Style>
+            </TextBox.Resources>
+            <TextBox.Template>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <ScrollViewer x:Name="PART_ContentHost"/>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+
+        <Button x:Name="lengthPeriod1"
+            Click="lengthPeriod1_Click"
+            Content="2"
+            Visibility="Hidden"
+            HorizontalAlignment="Left" 
+            Margin="122,119,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="87"
+            Height="39">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="lengthPeriod2"
+            Click="lengthPeriod2_Click"
+            Content="4" 
+            Visibility="Hidden"
+            HorizontalAlignment="Left" 
+            Margin="244,119,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="87"
+            Height="39">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="lengthPeriod3"
+            Click="lengthPeriod3_Click"
+            Visibility="Hidden"
+            Content="6" 
+            HorizontalAlignment="Left" 
+            Margin="366,119,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="87"
+            Height="39">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="numberOfTurns1"
+            Click="numberOfTurns1_Click"
+            Visibility="Hidden"
+            Content="10" 
+            HorizontalAlignment="Left" 
+            Margin="122,210,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="87"
+            Height="39">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="numberOfTurns2"
+            Click="numberOfTurns2_Click"
+            Content="25" 
+            Visibility="Hidden"
+            HorizontalAlignment="Left" 
+            Margin="244,210,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="87"
+            Height="39">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="numberOfTurns3"
+            Click="numberOfTurns3_Click"
+            Visibility="Hidden"
+            Content="50" 
+            HorizontalAlignment="Left" 
+            Margin="366,210,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="87"
+            Height="39">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Label Content="Seconds per Letter" 
+            x:Name="secondsLabel"
+            Visibility="Hidden"
+            FontFamily="Bahnschrift"
+            FontSize="12"
+            HorizontalAlignment="Left" 
+            Margin="233,90,0,0" 
+            VerticalAlignment="Top"/>
+
+        <Label Content="Number of turns" 
+            x:Name="turnsLabel"
+            Visibility="Hidden"
+            FontFamily="Bahnschrift"
+            FontSize="12"
+            HorizontalAlignment="Left" 
+            Margin="239,181,0,0" 
+            VerticalAlignment="Top"/>
+
+        <Button x:Name="saveBtn"
+            Click="saveBtn_Click"
+            Content="Save"
+            Visibility="Hidden"
+            HorizontalAlignment="Left" 
+            Margin="253,276,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift" 
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="70"
+            Height="20">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="StopBtn"
+            Click='StopBtn_Click'
+            Content="Stop" 
+            HorizontalAlignment="Left" 
+            Margin="361,267,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Bahnschrift"
+            Visibility="Hidden"
+            BorderBrush="Black"
+            BorderThickness="2"
+            FontSize="14" 
+            Foreground="Black" 
+            Width="70"
+            Height="20">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#DCDCDC"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+        <Label Content="Correct:" 
+            x:FieldModifier="public"
+            x:Name="correctLbl"
+            FontFamily="Bahnschrift"
+            FontSize="14"
+            HorizontalAlignment="Left" 
+            Margin="90,39,0,0" 
+            VerticalAlignment="Top"
+            Visibility="Hidden"/>
+        <Label Content="Incorrect:" 
+            x:FieldModifier="public"
+            x:Name="incorrectLbl"
+            FontFamily="Bahnschrift"
+            FontSize="14"
+            HorizontalAlignment="Left" 
+            Margin="166,39,0,0" 
+            VerticalAlignment="Top"
+            Visibility="Hidden"/>
+
+
+
+
+
+    </Grid>
+</Window>
